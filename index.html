@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>vue-simple-sample</title>
+    <style media="screen">
+      [v-cloak] { display : none; }
+    </style>
+  </head>
+  <body>
+    <!-- [v-cloak] : {{ }} 을 가려준다. css 속성 추가해야한다. -->
+    <div id="app" style="text-align:center;" v-cloak>
+
+      <!-- [v-model] : 양방향 바인딩을 위한 디렉티브. form관련 태그에만 사용한다 -->
+      <div class="text-type-v-model">
+        <h1> {{ playOftheGame }} </h1>
+        name : <input type="text" v-model="name"/>
+        <h2>{{ name }}</h2>
+      </div>
+
+      <!-- [v-bind:attr] : element의 속성에 데이터 값을 설정한다. v-bind는 생략할 수 있다.-->
+      <div class="checbox-type-v-model">
+        <img v-bind:src="ana" :style="thumb"/>
+      </div>
+
+      <!-- [v-if] : 조건문 -->
+      <div class="legend" v-if="voteNumber > 5">
+        <span>전설적입니다.</span>
+      </div>
+
+      <!-- [v-on] : event를 처리하기 위해 사용하는 디렉티브 -->
+      <div class="method-with-v-on-or-@" >
+        <h2>{{ voteNumber }}</h2>
+        <button type="button" v-on:click="vote">VOTE</button>
+        <button type="button" @click="resetVote">RESET</button>
+        <br>
+        <button type="button" @click="voteLuckyFinish">VOTE LUCKEY FINISH</button>
+      </div>
+
+      <hr>
+
+      <!-- [v-for] : 반복문 -->
+      <div class="ex0-v-for-loop">
+        <h2>position</h2>
+        <img :src="positions[posIdx].logo" style="width:100px; height:100px;"/>
+
+        <div class="position">
+          <li v-for="(item, idx) in positions">
+            <span>{{ item.type }}</span>
+            <input type="radio" name="pos" :checked="idx == posIdx" @click="changePos(idx)"/>
+          </li>
+        </div>
+      </div>
+
+    </div>
+  </body>
+</html>
