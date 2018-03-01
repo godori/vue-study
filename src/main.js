@@ -5,8 +5,12 @@ new Vue({
   el: '#app',
   data: {
     name: 'GODORI',
-    thumb: 'width:200;',
+    htmlLink: '<a href="https://playoverwatch.com/ko-kr/heroes/">Overwatch Heros</a>',
+    sizeStyle: 'width:100px; height:100px;',
+    thumbStyle: 'width:200;',
     playOftheGame: 'Play of the Game',
+    x: 0,
+    y: 0,
     posIdx: 0,
     positions: [
       { type: ' offense ',
@@ -25,6 +29,13 @@ new Vue({
     logo: 'https://vignette.wikia.nocookie.net/overwatch/images/9/95/Spray_-_Dark_Logo.png/revision/latest?cb=20160715182449'
   },
   methods: {
+    hitEnter: function () {
+      alert(this.name + '! You are the best player of the Game!!')
+    },
+    mousePos: function (myParam, event) {
+      this.x = event.clientX * myParam
+      this.y = event.clientY * myParam
+    },
     vote: function () {
       this.voteNumber++
     },
@@ -36,7 +47,6 @@ new Vue({
     },
     changePos: function (idx) {
       this.posIdx = idx
-      // this.positions[idx].check = true
     }
   }
 })
